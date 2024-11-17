@@ -142,7 +142,7 @@ function selectDifficulty(level) {
   console.log("difficulty:", level);
   localStorage.setItem("selectedDifficulty", level);
   if (level === "easy") {
-    setSpeed(0.008);
+    setSpeed(0.007);
   } else if (level === "normal") {
     setSpeed(0.012);
   } else if (level === "hard") {
