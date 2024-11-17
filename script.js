@@ -1,5 +1,6 @@
 import Ball from "./Ball.js";
-import Paddle from "./Paddle.js";
+import Paddle, { setSpeed } from "./Paddle.js";
+import { changeTheme } from "./theme.js";
 
 const ball = new Ball(document.getElementById("ball"));
 const playerPaddle = new Paddle(document.getElementById("player-paddle"));
@@ -60,6 +61,93 @@ document.addEventListener("mousemove", (e) => {
   playerPaddle.position = (e.y / window.innerHeight) * 100;
 });
 
+dragElement(document.getElementById("settingsMenu"));
+
+function dragElement(elmnt) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  if (document.getElementById(elmnt.id + "Header")) {
+    document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
 function settingsToggle() {}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedDifficulty = localStorage.getItem("selectedDifficulty");
+  const themeSelect = document.getElementById("theme");
+  const savedTheme = localStorage.getItem("selectedTheme") || "dark";
+  themeSelect.value = savedTheme;
+  changeTheme(savedTheme); // apply theme
+
+  themeSelect.addEventListener("change", (e) => {
+    const selectedTheme = e.target.value;
+    changeTheme(selectedTheme);
+    localStorage.setItem("selectedTheme", selectedTheme);
+  });
+
+  if (savedDifficulty) {
+    if (savedDifficulty === "easy") {
+      document.getElementById("easy-bot").checked = true;
+      selectDifficulty("easy");
+    } else if (savedDifficulty === "normal") {
+      document.getElementById("normal-bot").checked = true;
+      selectDifficulty("normal");
+    } else if (savedDifficulty === "hard") {
+      document.getElementById("hard-bot").checked = true;
+      selectDifficulty("hard");
+    }
+  }
+  document
+    .getElementById("easy-bot")
+    .addEventListener("change", () => selectDifficulty("easy"));
+  document
+    .getElementById("normal-bot")
+    .addEventListener("change", () => selectDifficulty("normal"));
+  document
+    .getElementById("hard-bot")
+    .addEventListener("change", () => selectDifficulty("hard"));
+});
+
+function selectDifficulty(level) {
+  console.log("difficulty:", level);
+  localStorage.setItem("selectedDifficulty", level);
+  if (level === "easy") {
+    setSpeed(0.008);
+  } else if (level === "normal") {
+    setSpeed(0.012);
+  } else if (level === "hard") {
+    setSpeed(0.017);
+  }
+}
 
 window.requestAnimationFrame(update);

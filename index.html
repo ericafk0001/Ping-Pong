@@ -22,16 +22,52 @@
     <button class="settings" id="settings" onclick="settingsToggle()">
       <i class="fa-solid fa-gear gear"></i>
     </button>
+    <audio id="boop">
+      <source src="boop.mp3" type="audio/mpeg" />
+    </audio>
     <div id="settingsContainer">
       <div id="settingsMenu">
         <div id="settingsMenuHeader">
           settings.exe <i class="fa-solid fa-xmark closeBtn"></i>
         </div>
-        <p>Volume</p>
-        <input type="range" max="100" value="100" class="volumeSlider" />
+        <div class="column">
+          <div class="settingItem">
+            <p>Volume</p>
+            <div class="volumeSlider">
+              <i class="fa fa-volume-down"></i>
+              <input type="range" max="100" value="100" class="volumeSlider" />
+              <i class="fa fa-volume-up"></i>
+            </div>
+          </div>
+          <div class="settingItem">
+            <p>Bot Difficulty</p>
+            <form>
+              <input type="radio" id="easy-bot" name="bot-difficulty" />
+              <input
+                type="radio"
+                id="normal-bot"
+                name="bot-difficulty"
+                checked
+              />
+              <input type="radio" id="hard-bot" name="bot-difficulty" />
+            </form>
+          </div>
+          <div class="settingItem">
+            <p>Theme</p>
+            <form>
+              <select name="theme" id="theme">
+                <option value="crimson">crimson</option>
+                <option value="paper">paper</option>
+                <option value="nebula">nebula</option>
+                <option value="peach">peach</option>
+                <option value="pastel">pastel</option>
+                <option value="dark">dark</option>
+              </select>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     <script src="script.js" type="module"></script>
-    <script src="Ball.js" type="module"></script>
   </body>
 </html>

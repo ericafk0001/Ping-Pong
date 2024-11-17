@@ -1,4 +1,8 @@
-const SPEED = 0.012;
+let SPEED = 0.012;
+
+export function setSpeed(newSpeed) {
+  SPEED = newSpeed;
+}
 
 export default class Paddle {
   constructor(paddleElem) {

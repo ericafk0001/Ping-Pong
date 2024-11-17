@@ -1,5 +1,6 @@
 const INITIAL_VELOCITY = 0.025;
 const VELOCITY_INCREMENT = 0.000005;
+let boop = document.getElementById("boop");
 
 export default class Ball {
   constructor(ballElem) {
@@ -53,6 +54,7 @@ export default class Ball {
 
     if (paddleRects.some((r) => isCollision(r, rect))) {
       this.direction.x *= -1;
+      boop.play();
     }
   }
 }
