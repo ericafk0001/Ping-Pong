@@ -104,15 +104,29 @@ function dragElement(elmnt) {
   }
 }
 
-function settingsToggle() {}
-
 document.addEventListener("DOMContentLoaded", () => {
   const savedDifficulty = localStorage.getItem("selectedDifficulty");
   const themeSelect = document.getElementById("theme");
   const savedTheme = localStorage.getItem("selectedTheme") || "dark";
   const music = document.getElementById("music");
   const audioElements = document.querySelectorAll("audio");
-  const volumeSlider = document.querySelector(".volumeSlider input");
+  const volumeSlider = document.querySelector("#volumeSlider input");
+  const settingsBtn = document.getElementById("settings");
+  const closeBtn = document.querySelector(".closeBtn");
+
+  //using visbility css not display because of flex
+  function toggleSettings() {
+    if (
+      settingsContainer.style.visibility === "hidden" ||
+      settingsContainer.style.visibility === ""
+    ) {
+      settingsContainer.style.visibility = "visible";
+    } else {
+      settingsContainer.style.visibility = "hidden";
+    }
+  }
+  settingsBtn.addEventListener("click", toggleSettings);
+  closeBtn.addEventListener("click", toggleSettings);
 
   volumeSlider.addEventListener("input", (event) => {
     const volume = event.target.value / 100; // Normalize to range 0-1

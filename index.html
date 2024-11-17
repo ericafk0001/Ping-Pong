@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="score">
-      <div id="player-score">0</div>
-      <div id="computer-score">0</div>
-    </div>
-    <div class="ball" id="ball"></div>
-    <div class="paddle left" id="player-paddle"></div>
-    <div class="paddle right" id="computer-paddle"></div>
-
-    <button class="settings" id="settings" onclick="settingsToggle()">
-      <i class="fa-solid fa-gear gear"></i>
-    </button>
     <audio id="boop1" src="boop1.mp3"></audio>
     <audio id="boop2" src="boop2.mp3"></audio>
     <audio id="boop3" src="boop3.mp3"></audio>
@@ -32,7 +21,17 @@
       src="One Man Symphony - Collateral Damage (Free) - 07 Exploration Theme 02.mp3"
       loop
     ></audio>
+    <div class="score">
+      <div id="player-score">0</div>
+      <div id="computer-score">0</div>
+    </div>
+    <div class="ball" id="ball"></div>
+    <div class="paddle left" id="player-paddle"></div>
+    <div class="paddle right" id="computer-paddle"></div>
 
+    <button class="settings" id="settings">
+      <i class="fa-solid fa-gear gear"></i>
+    </button>
     <div id="settingsContainer">
       <div id="settingsMenu">
         <div id="settingsMenuHeader">
@@ -41,7 +40,7 @@
         <div class="column">
           <div class="settingItem">
             <p>Volume</p>
-            <div class="volumeSlider">
+            <div id="volumeSlider">
               <i class="fa fa-volume-down"></i>
               <input type="range" max="100" value="100" class="volumeSlider" />
               <i class="fa fa-volume-up"></i>
