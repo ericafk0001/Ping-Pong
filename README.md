@@ -19,7 +19,8 @@ See `contributing.md` for ways to get started.
 ## Screenshots
 
 ![Game Screenshot](https://cloud-ihazk1qgl-hack-club-bot.vercel.app/0image.png)
-![Game Video](https://cloud-dwg3qpl7z-hack-club-bot.vercel.app/0demo_video.mp4)
+
+https://cloud-dwg3qpl7z-hack-club-bot.vercel.app/0demo_video.mp4
 
 ## Acknowledgment
 
