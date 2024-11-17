@@ -1,6 +1,18 @@
 const INITIAL_VELOCITY = 0.025;
 const VELOCITY_INCREMENT = 0.000005;
-let boop = document.getElementById("boop");
+
+const boop1 = document.getElementById("boop1");
+const boop2 = document.getElementById("boop2");
+const boop3 = document.getElementById("boop3");
+
+//array of boops
+const boopSounds = [boop1, boop2, boop3];
+
+//random boop :3
+function playRandomBoop() {
+  const randomIndex = Math.floor(Math.random() * boopSounds.length);
+  boopSounds[randomIndex].play();
+}
 
 export default class Ball {
   constructor(ballElem) {
@@ -50,11 +62,12 @@ export default class Ball {
 
     if (rect.bottom >= window.innerHeight || rect.top <= 0) {
       this.direction.y *= -1;
+      playRandomBoop();
     }
 
     if (paddleRects.some((r) => isCollision(r, rect))) {
       this.direction.x *= -1;
-      boop.play();
+      playRandomBoop();
     }
   }
 }

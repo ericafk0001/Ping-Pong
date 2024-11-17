@@ -7,6 +7,8 @@ const playerPaddle = new Paddle(document.getElementById("player-paddle"));
 const computerPaddle = new Paddle(document.getElementById("computer-paddle"));
 const playerScoreElem = document.getElementById("player-score");
 const computerScoreElem = document.getElementById("computer-score");
+const win = document.getElementById("win");
+const lose = document.getElementById("lose");
 
 let lastTime;
 function update(time) {
@@ -48,9 +50,11 @@ function handleLose() {
   if (rect.right >= window.innerWidth) {
     playerScoreElem.textContent = parseInt(playerScoreElem.textContent) + 1;
     flashElement(playerScoreElem, "#82ed24");
+    win.play();
   } else {
     computerScoreElem.textContent = parseInt(computerScoreElem.textContent) + 1;
     flashElement(computerScoreElem, "red");
+    lose.play();
   }
 
   ball.reset();
@@ -106,8 +110,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedDifficulty = localStorage.getItem("selectedDifficulty");
   const themeSelect = document.getElementById("theme");
   const savedTheme = localStorage.getItem("selectedTheme") || "dark";
+  const music = document.getElementById("music");
+  const audioElements = document.querySelectorAll("audio");
+  const volumeSlider = document.querySelector(".volumeSlider input");
+
+  volumeSlider.addEventListener("input", (event) => {
+    const volume = event.target.value / 100; // Normalize to range 0-1
+
+    audioElements.forEach((audio) => {
+      audio.volume = volume;
+    });
+  });
+
+  audioElements.forEach((audio) => {
+    audio.volume = volumeSlider.value / 100;
+  });
+
   themeSelect.value = savedTheme;
   changeTheme(savedTheme); // apply theme
+  music.play();
 
   themeSelect.addEventListener("change", (e) => {
     const selectedTheme = e.target.value;
@@ -146,7 +167,7 @@ function selectDifficulty(level) {
   } else if (level === "normal") {
     setSpeed(0.012);
   } else if (level === "hard") {
-    setSpeed(0.017);
+    setSpeed(0.018);
   }
 }
 
