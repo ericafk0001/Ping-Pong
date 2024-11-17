@@ -177,6 +177,8 @@ body {
 }
 
 .volumeSlider {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 25px;
   background-color: #070707;
@@ -203,4 +205,72 @@ body {
   border-radius: 50%;
   background: #f9fffd;
   cursor: pointer;
+}
+
+#easy-bot {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.15em solid green;
+  border-radius: 50%;
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+#easy-bot:checked {
+  background-color: green;
+}
+
+#normal-bot {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.15em solid yellow;
+  border-radius: 50%;
+  margin-left: 15px;
+  margin-right: 15px;
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+#normal-bot:checked {
+  background-color: yellow;
+}
+
+#hard-bot {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.15em solid red;
+  border-radius: 50%;
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+#hard-bot:checked {
+  background-color: red;
+}
+
+#theme {
+  width: 5em;
+  height: 2em;
+  text-align: center;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #0e0e0e60;
+  color: white;
+  font-weight: bold;
+  border-style: solid;
+  border-radius: 20px;
+  transition: opacity 0.2s;
+}
+
+#theme:hover {
+  opacity: 0.69;
 }
